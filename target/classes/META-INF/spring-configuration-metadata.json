@@ -1,0 +1,52 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "name": "spring.redis",
+      "type": "com.seckill.seckill.redis.RedisConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "name": "spring.redis.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "defaultValue": 100,
+      "name": "spring.redis.maxactive",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "defaultValue": 1000,
+      "name": "spring.redis.maxidle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "defaultValue": 3,
+      "name": "spring.redis.maxwait",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "name": "spring.redis.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "defaultValue": 0,
+      "name": "spring.redis.port",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.seckill.seckill.redis.RedisConfig",
+      "defaultValue": 3,
+      "name": "spring.redis.timeout",
+      "type": "java.lang.Integer"
+    }
+  ]
+}
