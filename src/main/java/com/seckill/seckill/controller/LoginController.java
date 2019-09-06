@@ -1,8 +1,11 @@
 package com.seckill.seckill.controller;
 
+import com.seckill.seckill.result.CodeMsg;
 import com.seckill.seckill.result.Result;
 import com.seckill.seckill.service.UserService;
+import com.seckill.seckill.util.ValidatorUtil;
 import com.seckill.seckill.vo.LoginVo;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,15 @@ public class LoginController {
         //参数 校验
         String  passInput =  loginVo.getPassword();
         String mobile = loginVo.getMobile();
+        if(StringUtils.isEmpty(passInput)) {
+            return Result.error(CodeMsg.PASSWORD_EMPTY);
+        }
+        if(StringUtils.isEmpty(mobile)) {
+            return Result.error(CodeMsg.MOBILE_EMPTY);
+        }
+        if(!ValidatorUtil.isMobile(mobile)) {
+            return Result.error(CodeMsg.MOBILE_ERROR);
+        }
         return  null;
     }
 }
