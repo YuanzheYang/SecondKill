@@ -2,7 +2,7 @@ package com.seckill.seckill.controller;
 
 import com.seckill.seckill.result.CodeMsg;
 import com.seckill.seckill.result.Result;
-import com.seckill.seckill.service.UserService;
+import com.seckill.seckill.service.MiaoshaUserService;
 import com.seckill.seckill.util.ValidatorUtil;
 import com.seckill.seckill.vo.LoginVo;
 import org.apache.commons.lang3.StringUtils;
@@ -20,18 +20,19 @@ public class LoginController {
     private static Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    UserService userService;
+    MiaoshaUserService userService;
 
     @RequestMapping("/to_login")
     public String toLogin(){
         return "login";
     }
+
     @RequestMapping("/do_login")
     @ResponseBody
     public Result<Boolean> doLogin(LoginVo loginVo) {
         log.info(loginVo.toString());
         //参数 校验
-        String  passInput =  loginVo.getPassword();
+        String passInput =  loginVo.getPassword();
         String mobile = loginVo.getMobile();
         if(StringUtils.isEmpty(passInput)) {
             return Result.error(CodeMsg.PASSWORD_EMPTY);
@@ -42,6 +43,11 @@ public class LoginController {
         if(!ValidatorUtil.isMobile(mobile)) {
             return Result.error(CodeMsg.MOBILE_ERROR);
         }
-        return  null;
+        CodeMsg cm = userService.login(loginVo);
+        if(cm.getCode() == 0) {
+            return Result.success(true);
+        }else{
+           return Result.error(cm);
+        }
     }
 }

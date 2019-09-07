@@ -21,7 +21,7 @@ public class LoginVo {
     }
 
     @Override
-    public String toString() {
+    public String    toString() {
         return "LoginVo{" +
                 "mobile='" + mobile + '\'' +
                 ", password='" + password + '\'' +
