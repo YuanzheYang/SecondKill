@@ -62,7 +62,7 @@
     }
     function doLogin(){
         g_showLoading();
-        var pass = md5(g_passsword_salt.charAt(0)+g_passsword_salt.charAt(7)+$("#password").val()+g_passsword_salt.charAt(4)+g_passsword_salt.charAt(3))
+        var pass = md5(g_passsword_salt.charAt(0)+g_passsword_salt.charAt(2)+$("#password").val()+g_passsword_salt.charAt(5)+g_passsword_salt.charAt(4))
         console.log(pass)
         $.ajax({
             type : "POST",

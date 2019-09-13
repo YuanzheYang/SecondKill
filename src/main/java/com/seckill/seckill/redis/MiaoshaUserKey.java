@@ -1,9 +1,10 @@
 package com.seckill.seckill.redis;
 
 public class MiaoshaUserKey extends BasePrefix {
-    private MiaoshaUserKey(String prefix) {
-        super(prefix);
+    public static final int TOKEN_EXPIRE = 3600 * 24 * 2;
+    private MiaoshaUserKey(int expireSeconds, String prefix) {
+        super(expireSeconds,prefix);
     }
-    public static MiaoshaUserKey token  = new MiaoshaUserKey("id");
-    public static MiaoshaUserKey getByName  = new MiaoshaUserKey("name");
+    public static MiaoshaUserKey token  = new MiaoshaUserKey(TOKEN_EXPIRE,"id");
+    //public static MiaoshaUserKey getByName  = new MiaoshaUserKey("name");
 }

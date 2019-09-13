@@ -9,15 +9,17 @@ import com.seckill.seckill.result.CodeMsg;
 import com.seckill.seckill.util.MD5Util;
 import com.seckill.seckill.util.UUIDUtil;
 import com.seckill.seckill.vo.LoginVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class MiaoshaUserService {
 
-    private static final  String COOKI_NAME_TOKEN = "token";
+    public static final  String COOKI_NAME_TOKEN = "token";
 
     @Autowired
     MiaoshaUserDao miaoshaUserDao;
@@ -29,7 +31,7 @@ public class MiaoshaUserService {
         return miaoshaUserDao.getById(id);
     }
 
-    public boolean login(LoginVo loginVo)  {
+    public boolean login(HttpServletResponse response, LoginVo loginVo)  {
         if(loginVo == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
@@ -48,8 +50,27 @@ public class MiaoshaUserService {
             throw new GlobalException(CodeMsg.PASSWORD_ERROR);
         }
         String token = UUIDUtil.uuid();
-        redisService.set(MiaoshaUserKey.token,token,user);
-        Cookie cookie = new
+        addCookie(response, token, user);
         return true;
+    }
+
+    public MiaoshaUser getByToken(HttpServletResponse response, String token) {
+        if(StringUtils.isEmpty(token)) {
+            return null;
+        }
+        MiaoshaUser user = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
+        if(user != null) {
+            addCookie(response, token, user);
+        }
+
+        return user;
+    }
+
+    public void addCookie(HttpServletResponse response, String token, MiaoshaUser user) {
+        redisService.set(MiaoshaUserKey.token,token,user);
+        Cookie cookie = new Cookie(COOKI_NAME_TOKEN,token);
+        cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }
