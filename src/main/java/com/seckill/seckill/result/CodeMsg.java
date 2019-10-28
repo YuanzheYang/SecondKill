@@ -9,6 +9,7 @@ public class CodeMsg {
 
     public static CodeMsg BIND_ERROR = new CodeMsg(500101,  "parameter validation error");
     //登陆模块 5002XX
+    public static CodeMsg SESSION_ERROR = new CodeMsg(500210, "session does not exist or expires");
     public static CodeMsg PASSWORD_EMPTY = new CodeMsg(500211, "password empty");
     public static CodeMsg MOBILE_EMPTY =  new CodeMsg(500212,  "mobile empty");
     public static CodeMsg MOBILE_ERROR =  new CodeMsg(500213,  "mobile number type wrong");
@@ -19,6 +20,7 @@ public class CodeMsg {
 
 
     //订单模块 5004XX
+    public static CodeMsg ORDER_NOT_EXIST = new CodeMsg(500400, "order not exist");
 
 
     //秒杀模块 5005XX
