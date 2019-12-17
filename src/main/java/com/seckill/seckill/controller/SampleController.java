@@ -1,6 +1,7 @@
 package com.seckill.seckill.controller;
 
 import com.seckill.seckill.domain.User;
+import com.seckill.seckill.rabbitmq.MQSender;
 import com.seckill.seckill.redis.RedisService;
 import com.seckill.seckill.redis.UserKey;
 import com.seckill.seckill.result.CodeMsg;
@@ -21,6 +22,16 @@ public class SampleController {
 
     @Autowired
     RedisService redisService;
+
+    @Autowired
+    MQSender sender;
+
+    @RequestMapping("/mq")
+    @ResponseBody
+    public Result<String> mq(){
+        sender.send("hello seckill");
+        return Result.success("Hello world");
+    }
 
     @RequestMapping("/hello")
     @ResponseBody
