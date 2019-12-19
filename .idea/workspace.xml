@@ -2,18 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c58709c6-1c14-48ac-8c53-948933f2ef32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQReceiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MiaoshaMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/redis/MiaoshaKey.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/controller/MiaoshaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/controller/MiaoshaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/controller/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/controller/SampleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/rabbitmq/MQSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/redis/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/redis/RedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/redis/GoodsKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/redis/GoodsKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/service/GoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/service/MiaoshaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/service/MiaoshaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seckill/seckill/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/goods_detail.htm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/goods_detail.htm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/dao/GoodsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/dao/GoodsDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/redis/OrderKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/redis/OrderKey.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/controller/MiaoshaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/controller/MiaoshaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/controller/SampleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/controller/SampleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/rabbitmq/MQConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/rabbitmq/MQConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/rabbitmq/MQReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/rabbitmq/MQReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/rabbitmq/MQSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/rabbitmq/MQSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/redis/GoodsKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/redis/GoodsKey.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/service/GoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/service/GoodsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/service/MiaoshaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/service/MiaoshaService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/seckill/seckill/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/seckill/seckill/service/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/goods_detail.htm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/goods_detail.htm" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +139,7 @@
       <workItem from="1573156215258" duration="1063000" />
       <workItem from="1573248653804" duration="658000" />
       <workItem from="1575406374473" duration="152000" />
-      <workItem from="1576529534261" duration="4736000" />
+      <workItem from="1576529534261" duration="18248000" />
     </task>
     <servers />
   </component>
