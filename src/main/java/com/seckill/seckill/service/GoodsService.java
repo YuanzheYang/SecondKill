@@ -28,4 +28,12 @@ public class GoodsService {
         return result > 0;
     }
 
+    public void resetStock(List<GoodsVo> goodsList) {
+        for(GoodsVo goods : goodsList) {
+            MiaoshaGoods g = new MiaoshaGoods();
+            g.setGoodsId(goods.getId());
+            g.setStockCount(goods.getStockCount());
+            goodsDao.resetStock(g);
+        }
+    }
 }

@@ -17,10 +17,23 @@
     <script type="text/javascript" src="/js/md5.min.js"></script>
     <!-- common.js -->
     <script type="text/javascript" src="/js/common.js"></script>
+    <style type="text/css">
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        body{
+            background:url('/img/bg2.jpg') no-repeat;
+            background-size:100% 100%;
+        }
+        #goodslist td{
+            border-top:1px solid #39503f61;
+        }
+    </style>
 </head>
 <body>
 
-<div class="panel panel-default">
+<div class="panel panel-default" style="height:100%;background-color:rgba(222,222,222,0.8)" >
     <div class="panel-heading">秒杀商品详情</div>
     <div class="panel-body">
         <span id="userTip"> 您还没有登录，请登陆后再操作<br/></span>
@@ -48,7 +61,13 @@
                       <button class="btn btn-primary btn-block" type="submit" id="buyButton">立即秒杀</button>
                       <input type="hidden" name="goodsId"  id="goodsId" />
                    </form>-->
-                <button class="btn btn-primary btn-block" type="button" id="buyButton"onclick="doMiaosha()">立即秒杀</button>
+                <div class="row">
+                    <div class="form-inline">
+                        <img id="captchaImg" width="120" height="32"  style="display:none" onclick="refreshVerifyCode()"/>
+                        <input id="captcha"  class="form-control" style="display:none"/>
+                        <button class="btn btn-primary" type="button" id="buyButton"onclick="getMiaoshaPath()">Buy</button>
+                    </div>
+                </div>
                 <input type="hidden" name="goodsId"  id="goodsId" />
             </td>
         </tr>
@@ -69,8 +88,31 @@
 </body>
 <script>
 
+    function getMiaoshaPath(){
+        var goodsId = $("#goodsId").val();
+        g_showLoading();
+        $.ajax({
+            url:"/miaosha/path",
+            type:"GET",
+            data:{
+                goodsId:goodsId,
+                captcha:$("#captcha").val()
+            },
+            success:function(data){
+                if(data.code == 0){
+                    var path = data.data;
+                    doMiaosha(path);
+                }else{
+                    layer.msg(data.msg);
+                }
+            },
+            error:function(){
+                layer.msg("客户端请求有误");
+            }
+        });
+    }
 
-function getMiaoshaResult(goodsId) {
+    function getMiaoshaResult(goodsId){
         g_showLoading();
         $.ajax({
             url:"/miaosha/result",
@@ -78,21 +120,21 @@ function getMiaoshaResult(goodsId) {
             data:{
                 goodsId:$("#goodsId").val(),
             },
-            success:function (data) {
-                if(data.code == 0) {
+            success:function(data){
+                if(data.code == 0){
                     var result = data.data;
-                    if(result < 0) {
-                        layer.msg("Sorry, we are out of stock");
-                    }else if(result == 0) {
-                        setTimeout(function () {
-                            getMiaoshaResult(goodsId)
-                        },50);
+                    if(result < 0){
+                        layer.msg("对不起，秒杀失败");
+                    }else if(result == 0){//继续轮询
+                        setTimeout(function(){
+                            getMiaoshaResult(goodsId);
+                        }, 200);
                     }else{
-                        layer.confirm("Congratulations, seckill success! Check the confirmation info?",{btn:["Yes","No"]},
-                            function () {
+                        layer.confirm("Congratulations! Shopping success. Check the order Info？", {btn:["Yes","No"]},
+                            function(){
                                 window.location.href="/order_detail.htm?orderId="+result;
                             },
-                            function () {
+                            function(){
                                 layer.closeAll();
                             });
                     }
@@ -100,30 +142,34 @@ function getMiaoshaResult(goodsId) {
                     layer.msg(data.msg);
                 }
             },
-            error:function () {
+            error:function(){
                 layer.msg("Client request error");
             }
         });
-}
-function doMiaosha(){
+    }
+
+    function doMiaosha(path){
         $.ajax({
-            url:"/miaosha/do_miaosha",
+            url:"/miaosha/"+path+"/do_miaosha",
             type:"POST",
             data:{
-                goodsId:$("#goodsId").val(),
+                goodsId:$("#goodsId").val()
             },
-            success:function (data) {
-                if(data.code == 0) {
+            success:function(data){
+                if(data.code == 0){
+                    //window.location.href="/order_detail.htm?orderId="+data.data.id;
                     getMiaoshaResult($("#goodsId").val());
                 }else{
                     layer.msg(data.msg);
                 }
             },
-            error:function () {
-                layer.msg("Client request error")
+            error:function(){
+                layer.msg("客户端请求有误");
             }
-        })
-}
+        });
+
+    }
+
     function render(detail){
         var miaoshaStatus = detail.miaoshaStatus;
         var  remainSeconds = detail.remainSeconds;
@@ -183,12 +229,20 @@ function doMiaosha(){
                 clearTimeout(timeout);
             }
             $("#miaoshaTip").html("秒杀进行中");
+            $("#captchaImg").attr("src", "/miaosha/captcha?goodsId="+$("#goodsId").val());
+            $("#captchaImg").show();
+            $("#captcha").show();
         }else{//秒杀已经结束
             $("#buyButton").attr("disabled", true);
             $("#miaoshaTip").html("秒杀已经结束");
+            $("#captchaImg").hide();
+            $("#captcha").hide();
         }
     }
-
+    function refreshVerifyCode(){
+        $("#captchaImg").attr("src", "/miaosha/captcha?goodsId="+$("#goodsId").val()+"&timestamp="+new Date().getTime());
+    }
 </script>
 </html>
+
 

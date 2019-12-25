@@ -5,6 +5,8 @@ import com.seckill.seckill.domain.OrderInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.Mapping;
 
+import java.util.List;
+
 @Mapper
 public interface OrderDao {
 
@@ -21,4 +23,13 @@ public interface OrderDao {
 
     @Select("select * from order_info where id = #{orderId}")
     OrderInfo getOrderById(@Param("orderId") long orderId);
+
+    @Select("select * from miaosha_order where goods_id=#{goodsId}")
+    List<MiaoshaOrder> listByGoodsId(@Param("goodsId") long goodsId);
+
+    @Delete("delete from order_info")
+    public void deleteOrders();
+
+    @Delete("delete from miaosha_order")
+    public void deleteMiaoshaOrders();
 }
